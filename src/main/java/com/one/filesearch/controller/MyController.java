@@ -19,25 +19,19 @@ import java.util.Map;
 @Slf4j
 public class MyController {
 
-//    Autowiring service class
+    //    Autowiring service class
     @Autowired
     private MyService myService;
 
-//    Get request with file name as a PathVariable
+    //    Get request with file name as a PathVariable
     @GetMapping("{fileName}")
     public ResponseEntity<?> getDuplicates(@PathVariable String fileName) throws IOException {
 
-//        logging for a controller method invokation
-        log.info("GetDuplicates method is called");
+    //    logging for a controller method invokation
+        log.info("GetDuplicates method of MyController class is called");
 
-//        Get data from a service class method
-        List<Map.Entry<String, Integer>> duplicateWordsList = myService.getDuplicateWords(fileName);
-
-
-        log.info("Data extracted successfully from service class.");
-
-//        returning the ResponseEntity with duplicate word list and Http response ok
-        return new ResponseEntity<>(duplicateWordsList, HttpStatus.OK);
+    //    returning the ResponseEntity with duplicate word list and Http response ok
+        return new ResponseEntity<>(myService.getDuplicateWords(fileName), HttpStatus.OK);
 
     }
 }
